@@ -19,6 +19,7 @@ body {
 h1 {
   text-align: center;
   margin-bottom: 20px;
+  color: white;
 }
 
 .user-input {
@@ -39,6 +40,8 @@ h1 {
   border-radius: 5px;
   overflow: hidden;
   background-color: #444;
+  border-color: #8ca4bd;
+  border-width: 10px;
 }
 
 .message-container {
@@ -61,7 +64,7 @@ h1 {
 
 .message-container li span {
   font-size: 0.8em;
-  color: #888;
+  color: #dde974;
 }
 
 .message-right {
@@ -69,7 +72,7 @@ h1 {
 }
 
 .message-form {
-  width: 90%;
+  width: 100%;
   max-width: 800px;
   display: flex;
   justify-content: space-between;
@@ -105,4 +108,32 @@ h3 {
   margin-top: 20px;
   color: #888;
   font-size: 0.9em;
+}
+
+.datetime{
+  font-size: 13px;
+}
+
+.chat-placeholder {
+  color: rgba(255, 255, 255, 0.7);
+  background-color: #72787e;
+  filter: blur(3px); 
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 75px;
+}
+
+.userfield{
+  display: flex;
+  justify-content: space-between;
+}
+.username{
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  background-color: #ccc;
+  margin-right: 5px;
 }

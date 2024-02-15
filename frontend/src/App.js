@@ -31,7 +31,7 @@ function ChatApp() {
         const data = {
             username,
             message: messageInput,
-            dateTime: new Date().toLocaleString(),
+            dateTime: new Date().toLocaleTimeString('en-US', { hour12: false }),
         };
         socket.emit('message', data);
         setMessageInput('');
@@ -39,7 +39,9 @@ function ChatApp() {
 
     return (
         <div className="container">
-            <h1>Chatbot</h1>
+            <h1>Chatbot💬</h1>
+            <div className='userfield'>
+            <p className='username'>Username</p>
             <input
                 type="text"
                 name="user"
@@ -48,15 +50,21 @@ function ChatApp() {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
             />
+            </div>
             <div className="chat-container">
-                <ul className="message-container">
-                    {chatMessages.map((message, index) => (
-                        <li key={index} className={message.username === username ? 'message-right' : 'message-left'}>
-                            <span>{message.username}</span>
-                            <p>{message.message}</p>
-                        </li>
-                    ))}
-                </ul>
+            {chatMessages.length === 0 ? (
+                    <p className="chat-placeholder">CHAT HERE</p>
+                ) : (
+                    <ul className="message-container">
+                        {chatMessages.map((message, index) => (
+                            <li key={index} className={message.username === username ? 'message-right' : 'message-left'}>
+                                <span>{message.username}</span>
+                                <p>{message.message}</p>
+                                <p className='datetime'>{message.dateTime}</p>
+                            </li>
+                        ))}
+                    </ul>
+                )}
                 <form className="message-form" onSubmit={sendMessage}>
                     <input
                         type="text"
