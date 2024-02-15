@@ -1,33 +1,34 @@
 const express = require('express');
 const http = require('http');
-const socketIo = require('socket.io');
+const {Server} = require('socket.io');
 const cors = require('cors');
 
 const app = express();
 const server = http.createServer(app);
-const io = socketIo(server);
+const io = new Server(server,{
+    cors:{
+        origin:'http://localhost:3000',
+        methods:["GET","POST"]
+    }
+})
 
 app.use(cors());
 
-let totalClients = 0;
+let totaluser = 0;
 
 io.on('connection', (socket) => {
-    totalClients++;
-    io.emit('clients-total', totalClients);
+    console.log("hello");
+    totaluser++;
+    io.emit('user-count', totaluser);
 
     socket.on('message', (data) => {
         io.emit('chat-message', data);
     });
 
-    socket.on('feedback', (data) => {
-        io.emit('feedback', data);
-    });
-
     socket.on('disconnect', () => {
-        totalClients--;
-        io.emit('clients-total', totalClients);
+        totaluser--;
+        io.emit('user-count', totaluser);
     });
-    console.log("hello")
 });
 
 const PORT = process.env.PORT || 8000;
