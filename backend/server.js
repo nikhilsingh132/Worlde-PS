@@ -7,7 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server,{
     cors:{
-        origin:'https://localhost:3000',
+        origin: 'https://chatbotics.netlify.app',
         methods:["GET","POST"]
     }
 })
@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
     });
 });
 
-const PORT = process.env.PORT || 8000;
+const PORT = 8000;
 server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
 });
